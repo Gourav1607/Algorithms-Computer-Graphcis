@@ -10,7 +10,8 @@
 
 void hermite(int, int, int, int, float, float);
 
-int main() {
+int main()
+{
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "C:\\TC\\BGI");
 
@@ -31,18 +32,14 @@ int main() {
 	return 0;
 }
 
-void hermite(int x1, int y1, int x2, int y2, float slope1, float slope2) {
+void hermite(int x1, int y1, int x2, int y2, float slope1, float slope2)
+{
 	float x, y;
 	int color = getcolor();
-	for (float u = 0.00; u <= 1.0; u += 0.001) {
-		x = (2 * u * u * u - 3 * u * u + 1) * x1
-				+ (-2 * u * u * u + 3 * u * u) * x2
-				+ (u * u * u - 2 * u * u + u) * slope1 * x1
-				+ (u * u * u - u * u) * slope2 * x2;
-		y = (2 * u * u * u - 3 * u * u + 1) * y1
-				+ (-2 * u * u * u + 3 * u * u) * y2
-				+ (u * u * u - 2 * u * u + u) * slope1 * x1
-				+ (u * u * u - u * u) * slope2 * x2;
-		putpixel(20 + (int) (x + 0.5), 240 - (int) (y + 0.5), color);
+	for (float u = 0.00; u <= 1.0; u += 0.001)
+	{
+		x = (2 * u * u * u - 3 * u * u + 1) * x1 + (-2 * u * u * u + 3 * u * u) * x2 + (u * u * u - 2 * u * u + u) * slope1 * x1 + (u * u * u - u * u) * slope2 * x2;
+		y = (2 * u * u * u - 3 * u * u + 1) * y1 + (-2 * u * u * u + 3 * u * u) * y2 + (u * u * u - 2 * u * u + u) * slope1 * x1 + (u * u * u - u * u) * slope2 * x2;
+		putpixel(20 + (int)(x + 0.5), 240 - (int)(y + 0.5), color);
 	}
 }

@@ -2,7 +2,8 @@
 #include "iostream.h"
 #include "conio.h"
 
-int main() {
+int main()
+{
 	int gd = DETECT, gm = DETECT;
 	int i, xmid, ymid, x1, y1, x2, y2, x, y, dy, dx, p, gap = 50;
 	float m;
@@ -21,7 +22,8 @@ int main() {
 	cout << " Enter Y : ";
 	cin > y2;
 
-	if (y1 > y2) {    // needed for -ve slope to work
+	if (y1 > y2)
+	{ // needed for -ve slope to work
 		int temp;
 		temp = x1;
 		x1 = x2;
@@ -33,7 +35,7 @@ int main() {
 
 	dy = abs(y2 - y1);
 	dx = abs(x2 - x1);
-	m = (float) (dy) / (dx);
+	m = (float)(dy) / (dx);
 	dy = abs(dy);
 	dx = abs(dx);
 
@@ -45,7 +47,8 @@ int main() {
 
 	x = x1;
 	y = y1;
-	if (m > 1.0) {
+	if (m > 1.0)
+	{
 		x = y1;
 		y = x1;
 	}
@@ -53,25 +56,29 @@ int main() {
 	line(5, ymid, getmaxx() - 5, ymid);
 	line(xmid + 3, 5, xmid + 3, getmaxy() - 5);
 
-	for (i = xmid + gap; i < getmaxx() - 5; i += gap) {
+	for (i = xmid + gap; i < getmaxx() - 5; i += gap)
+	{
 		outtextxy(i, ymid - 3, "|");
 		itoa(i - xmid, str, 10);
 		outtextxy(i, ymid + 3, str);
 	}
 
-	for (i = ymid - gap; i > 5; i -= gap) {
+	for (i = ymid - gap; i > 5; i -= gap)
+	{
 		outtextxy(xmid, i, "-");
 		itoa(ymid - i, str, 10);
 		outtextxy(xmid + 5, i, str);
 	}
 
-	for (i = xmid - gap; i > 5; i -= gap) {
+	for (i = xmid - gap; i > 5; i -= gap)
+	{
 		outtextxy(i, ymid - 3, "|");
 		itoa(-(xmid - i), str, 10);
 		outtextxy(i - 6, ymid + 3, str);
 	}
 
-	for (i = ymid + gap; i < getmaxy() - 5; i += gap) {
+	for (i = ymid + gap; i < getmaxy() - 5; i += gap)
+	{
 		outtextxy(xmid, i, "-");
 		itoa(-(i - ymid), str, 10);
 		outtextxy(xmid + 8, i, str);
@@ -80,12 +87,16 @@ int main() {
 	x += xmid;
 	y = ymid - y;
 	p = 2 * dy - dx;
-	while (x < x2) {
-		if (p >= 0) {
+	while (x < x2)
+	{
+		if (p >= 0)
+		{
 			putpixel(x, y, 5);
 			y -= 1;
 			p += 2 * dy - 2 * dx;
-		} else {
+		}
+		else
+		{
 			putpixel(x, y, 5);
 			p += 2 * dy;
 		}

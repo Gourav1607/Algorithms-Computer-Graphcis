@@ -9,9 +9,10 @@
 #include "conio.h"
 #include "math.h"
 
-#define sign(x) ((x > 0)? 1 : ((x < 0)? -1: 0))
+#define sign(x) ((x > 0) ? 1 : ((x < 0) ? -1 : 0))
 
-int main() {
+int main()
+{
 	int x1, y1, x2, y2;
 
 	cout << "\n Enter Initial Points X1, Y1 : ";
@@ -26,7 +27,8 @@ int main() {
 	return 0;
 }
 
-void bresenham(int x1, int y1, int x2, int y2) {
+void bresenham(int x1, int y1, int x2, int y2)
+{
 	int x = x1;
 	int y = y1;
 	int dx = abs(x2 - x1);
@@ -37,7 +39,8 @@ void bresenham(int x1, int y1, int x2, int y2) {
 
 	int temp = 0, swap = 0;
 
-	if (dy > dx) {
+	if (dy > dx)
+	{
 		temp = dx;
 		dx = dy;
 		dy = temp;
@@ -45,9 +48,11 @@ void bresenham(int x1, int y1, int x2, int y2) {
 	}
 
 	int D = 2 * dy - dx;
-	for (int i = 0; i < dx; i++) {
+	for (int i = 0; i < dx; i++)
+	{
 		putpixel(x, y, 50);
-		while (D >= 0) {
+		while (D >= 0)
+		{
 			D -= 2 * dx;
 			if (swap)
 				x += s1;

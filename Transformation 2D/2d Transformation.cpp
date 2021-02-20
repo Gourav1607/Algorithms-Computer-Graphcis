@@ -1,9 +1,9 @@
-#include<stdio.h>
-#include<conio.h>
-#include<graphics.h>
-#include<dos.h>
-#include<math.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+#include <dos.h>
+#include <math.h>
+#include <stdlib.h>
 
 void input();
 void output();
@@ -19,11 +19,13 @@ int tx, ty;
 float k;
 int shx, shy;
 
-void input() {
+void input()
+{
 	printf("\nEnter the number of lines: ");
 	scanf("%d", &n);
 
-	for (i = 0; i < n; i++) {
+	for (i = 0; i < n; i++)
+	{
 		printf("\nEnter the coordinates for the Line: ");
 		scanf("%d%d%d%d", &a[i][0], &a[i][1], &a[i + 1][0], &a[i + 1][1]);
 	}
@@ -37,23 +39,27 @@ void input() {
 	 */
 }
 
-void output() {
+void output()
+{
 
-	line(getmaxx() / 2, 0, getmaxx() / 2, getmaxy());  //display quadrant system
+	line(getmaxx() / 2, 0, getmaxx() / 2, getmaxy()); //display quadrant system
 	line(0, getmaxy() / 2, getmaxx(), getmaxy() / 2);
 
-	for (i = 0; i < n; i++) {
+	for (i = 0; i < n; i++)
+	{
 		line(a[i][0] + getmaxx() / 2, getmaxy() / 2 - a[i][1],
-				a[i + 1][0] + getmaxx() / 2, getmaxy() / 2 - a[i + 1][1]);
+			 a[i + 1][0] + getmaxx() / 2, getmaxy() / 2 - a[i + 1][1]);
 	}
 }
 
-void translation() {
+void translation()
+{
 	printf("enter the tranformation vertex tx,ty:\n");
 	scanf("%d%d", &tx, &ty);
 	cleardevice();
 	output();
-	for (i = 0; i <= n; i++) {
+	for (i = 0; i <= n; i++)
+	{
 		a[i][0] = a[i][0] + tx;
 		a[i][1] = a[i][1] + ty;
 	}
@@ -70,7 +76,8 @@ void translation() {
 	delay(100);
 }
 
-void rotation() {
+void rotation()
+{
 	printf("\nEnter the rotating angle: ");
 	scanf("%d", &y);
 	printf("\nEnter the pivot point:");
@@ -78,12 +85,12 @@ void rotation() {
 	cleardevice();
 	output();
 	k = (y * 3.14) / 180;
-	for (i = 0; i <= n; i++) {
+	for (i = 0; i <= n; i++)
+	{
 		tx = fx + (a[i][0] - fx) * cos(k) - (a[i][1] - fy) * sin(k);
 		ty = fy + (a[i][0] - fx) * sin(k) + (a[i][1] - fy) * cos(k);
 		a[i][0] = tx;
 		a[i][1] = ty;
-
 	}
 
 	setlinestyle(2, 1, 1);
@@ -98,12 +105,14 @@ void rotation() {
 	delay(100);
 }
 
-void scaling() {
+void scaling()
+{
 	printf("\nEnter the scaling factor: ");
 	scanf("%d%d", &sx, &sy);
 	cleardevice();
 	output();
-	for (i = 0; i <= n; i++) {
+	for (i = 0; i <= n; i++)
+	{
 		a[i][0] = a[i][0] * sx;
 		a[i][1] = a[i][1] * sy;
 	}
@@ -121,12 +130,14 @@ void scaling() {
 	delay(100);
 }
 
-void shearing() {
+void shearing()
+{
 	printf("\nEnter the shearing factor: ");
 	scanf("%d%d", &shx, &shy);
 	cleardevice();
 	output();
-	for (i = 0; i <= n; i++) {
+	for (i = 0; i <= n; i++)
+	{
 		x = a[i][0];
 		y = a[i][1];
 		int x1 = x + shx * y;
@@ -148,25 +159,29 @@ void shearing() {
 	delay(100);
 }
 
-void reflection() {
+void reflection()
+{
 	int cr;
 	printf(
-			"\n0:About origin\n1:About x=y\n2:About x\n3:About y\n4:About x=-y\n");
+		"\n0:About origin\n1:About x=y\n2:About x\n3:About y\n4:About x=-y\n");
 	printf("\nEnter your Choice: ");
 	scanf("%d", &cr);
 
 	cleardevice();
 	output();
 
-	switch (cr) {
+	switch (cr)
+	{
 	case 0:
-		for (i = 0; i <= n; i++) {
-			a[i][0] = a[i][0] * (-1);            // change x
-			a[i][1] = a[i][1] * (-1);            // change y
+		for (i = 0; i <= n; i++)
+		{
+			a[i][0] = a[i][0] * (-1); // change x
+			a[i][1] = a[i][1] * (-1); // change y
 		}
 		break;
 	case 1:
-		for (i = 0; i <= n; i++) {    // swap x and y
+		for (i = 0; i <= n; i++)
+		{ // swap x and y
 			int swap;
 			swap = a[i][0];
 			a[i][0] = a[i][1];
@@ -174,16 +189,19 @@ void reflection() {
 		}
 		break;
 	case 2:
-		for (i = 0; i <= n; i++) {
-			a[i][1] = a[i][1] * (-1);            // change y
+		for (i = 0; i <= n; i++)
+		{
+			a[i][1] = a[i][1] * (-1); // change y
 		}
 		break;
 	case 3:
-		for (i = 0; i <= n; i++) {
-			a[i][0] = a[i][0] * (-1);           // change x
+		for (i = 0; i <= n; i++)
+		{
+			a[i][0] = a[i][0] * (-1); // change x
 		}
 	case 4:
-		for (i = 0; i <= n; i++) {    // multiply by -1 and then swap x y
+		for (i = 0; i <= n; i++)
+		{ // multiply by -1 and then swap x y
 			int swap;
 			a[i][0] = (-1) * a[i][0];
 			a[i][1] = (-1) * a[i][1];
@@ -207,7 +225,8 @@ void reflection() {
 	delay(100);
 }
 
-void main() {
+void main()
+{
 
 	int gd = DETECT, gx;
 	initgraph(&gd, &gx, "C:\\TurboC3\\BGI");
@@ -215,13 +234,15 @@ void main() {
 
 	output();
 
-	do {
+	do
+	{
 		printf("\nWhat Do you want to do with current object\n");
 		printf(
-				"\n1:Translation\n2:Rotation\n3:Scaling\n4:Shearing\n5:Reflection\n");
+			"\n1:Translation\n2:Rotation\n3:Scaling\n4:Shearing\n5:Reflection\n");
 		printf("\nEnter your Choice: ");
 		scanf("%d", &ch);
-		switch (ch) {
+		switch (ch)
+		{
 		case 1:
 			translation();
 			break;
@@ -248,13 +269,15 @@ void main() {
 		printf("To continue press 1 & to EXIT press 0:");
 		scanf("%d", &j);
 
-		if (j == 1) {
+		if (j == 1)
+		{
 			printf("\nThe current object has the line coordinates:");
-			for (i = 0; i < n; i++) {
+			for (i = 0; i < n; i++)
+			{
 				printf("\n");
 				printf("For line %d:", i + 1);
 				printf("%d %d %d %d", a[i][0], a[i][1], a[i + 1][0],
-						a[i + 1][1]);
+					   a[i + 1][1]);
 			}
 		}
 	} while (j == 1);
